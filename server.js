@@ -20,3 +20,10 @@ MongoClient.connect(db.url, (err, database) => {
         console.log('We are live on ' + port) ;
     });
 });
+
+function function1() {
+    // stuff you want to happen right away
+    console.log('Rnd of waiting');
+}
+console.log("Starts waiting")
+setTimeout( function1, 5000);

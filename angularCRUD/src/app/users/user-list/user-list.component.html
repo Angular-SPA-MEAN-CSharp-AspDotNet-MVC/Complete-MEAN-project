@@ -34,6 +34,16 @@
     </button>
   </div>
   <div class="modal-body">
-    This is a modal.
+    <form>
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
+      <p class="text-danger">{{errorMsg.name}}</p>
+
+      <label for="address">Address</label>
+      <input type="text" class="form-control" name="address" [(ngModel)]="user.address">
+      <p class="text-danger">{{errorMsg.address}}</p>
+
+      <button class="btn btn-primary" (click)="onSave()">Save</button>
+    </form>
   </div>
 </ng-template>

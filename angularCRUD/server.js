@@ -33,7 +33,7 @@ var UserSchema = new Schema({
 var model = mongo.model('users', UserSchema, 'users');
 
 app.post("/api/SaveUser", function(req,res){
-  var mod = new model(req,body);
+  var mod = new model(req.body);
   mod.save(function(err,data){
     if(err){
       res.send(err);
@@ -45,7 +45,7 @@ app.post("/api/SaveUser", function(req,res){
 });
 
 app.post("/api/UpdateUser", function(req,res){
-  var mod = new model(req,body);
+  var mod = new model(req.body);
   model.findByIdAndUpdate(req.body._id, {name: req.body.name, address: req.body.address},
   function(err, data){
     if(err){

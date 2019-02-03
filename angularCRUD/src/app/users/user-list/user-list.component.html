@@ -15,7 +15,7 @@
             <td>{{user.name}}</td>
             <td>{{user.address}}</td>
             <td>
-              <button class="btn btn-warning">Edit</button>
+              <button class="btn btn-warning" (click)="openModalEdit(edit, user)">Edit</button>
               <button class="btn btn-danger">Delete</button>
             </td>
           </tr>
@@ -24,7 +24,6 @@
     </div>
   </div>
 </div>
-
 
 <ng-template #add>
   <div class="modal-header">
@@ -44,6 +43,28 @@
       <p class="text-danger">{{errorMsg.address}}</p>
 
       <button class="btn btn-primary" (click)="onSave()">Save</button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #edit>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="editUser.name">
+      <p class="text-danger">{{errorMsg.name}}</p>
+
+      <label for="address">Address</label>
+      <input type="text" class="form-control" name="address" [(ngModel)]="editUser.address">
+      <p class="text-danger">{{errorMsg.address}}</p>
+
+      <button class="btn btn-primary" (click)="onUpdate()">Update</button>
     </form>
   </div>
 </ng-template>

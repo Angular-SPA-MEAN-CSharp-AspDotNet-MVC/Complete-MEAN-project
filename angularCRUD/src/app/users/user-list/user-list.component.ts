@@ -12,6 +12,7 @@ export class UserListComponent implements OnInit {
   modalRef: BsModalRef;
   user: User = new User();
   users : any;
+  editUser: any;
   errorMsg: ErrorMsg = new ErrorMsg();
   constructor(private modalService: BsModalService,
               private userService: UserService) {
@@ -46,8 +47,22 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  onUpdate() {
+    this.userService.update(this.editUser).subscribe( res => {
+      this.getUser();
+      this.modalRef.hide()
+    }, error => {
+      console.log(error);
+    });
+  }
+
   openModalAdd(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  openModalEdit(template: TemplateRef<any>, user){
+    this.modalRef = this.modalService.show(template);
+    this.editUser = user;
   }
 }
 class User {

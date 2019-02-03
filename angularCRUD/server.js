@@ -46,6 +46,7 @@ app.post("/api/SaveUser", function(req,res){
 
 app.post("/api/UpdateUser", function(req,res){
   var mod = new model(req.body);
+  console.log("called here");
   model.findByIdAndUpdate(req.body._id, {name: req.body.name, address: req.body.address},
   function(err, data){
     if(err){

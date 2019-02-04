@@ -14,6 +14,7 @@ export class UserListComponent implements OnInit {
   users : any;
   editUser: any;
   errorMsg: ErrorMsg = new ErrorMsg();
+  id = { "id" : "" };
   constructor(private modalService: BsModalService,
               private userService: UserService) {
   }
@@ -56,6 +57,15 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  deleteUser() {
+    this.userService.delete(this.id).subscribe( res => {
+      this.getUser();
+      this.modalRef.hide();
+    }, error => {
+      console.log(error);
+    });
+  }
+
   openModalAdd(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
@@ -63,6 +73,11 @@ export class UserListComponent implements OnInit {
   openModalEdit(template: TemplateRef<any>, user){
     this.modalRef = this.modalService.show(template);
     this.editUser = user;
+  }
+
+  openModalDelete(template: TemplateRef<any>,id){
+    this.id.id = id;
+    this.modalRef = this.modalService.show(template);
   }
 }
 class User {

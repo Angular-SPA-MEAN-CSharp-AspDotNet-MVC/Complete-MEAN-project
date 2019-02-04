@@ -20,4 +20,8 @@ export class UserService {
   update(data) {
     return this.http.post( this.baseUrl + '/api/UpdateUser', data);
   }
+
+  delete(id) {
+    return this.http.post(this.baseUrl + "/api/deleteUser" , id);
+  }
 }
